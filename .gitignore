@@ -1,6 +1,6 @@
 /__pycache__
 /build
-/us
+/django-us
 db.sqlite3
 *.pyc
 *.log
