@@ -1,0 +1,21 @@
+---
+  - name: Install nginx
+    apt: name=nginx update_cache=True
+    sudo: True
+
+  - name: delete default vhost
+    file: name=/etc/nginx/sites-available/default state=absent
+    file: name=/etc/nginx/sites-enabled/default state=absent
+    sudo: true
+
+  - name: Copy nginx config file
+    template: src=virtual_host.conf.j2 dest={{ nginx.conf_file }}
+    sudo: True
+
+  - name: Enable configuration
+    file: dest=/etc/nginx/sites-enabled/us src={{ nginx.conf_file }} state=link
+    sudo: True
+
+  - name: Restart nginx
+    service: name=nginx state=restarted
+    sudo: True

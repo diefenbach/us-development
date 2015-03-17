@@ -1,0 +1,19 @@
+---
+app:
+    id: us
+
+nginx:
+    server_name: localhost
+    conf_file: /etc/nginx/sites-available/us
+
+sources:
+    project:
+        repo: https://github.com/diefenbach/us-development.git
+        name: us_development
+        version: test
+    us:
+        repo: https://github.com/diefenbach/django-us.git
+        name: us
+        version: test
+user:
+    home: /Users/Kai

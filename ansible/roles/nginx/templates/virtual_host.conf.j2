@@ -1,0 +1,9 @@
+server {
+        listen 80 default_server;
+        root /usr/share/nginx/www;
+        index index.html index.htm;
+        server_name {{ nginx.server_name }};
+        location / {
+                try_files $uri $uri/ $uri.html $uri.html/ =404;
+        }
+}

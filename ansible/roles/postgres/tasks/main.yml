@@ -1,0 +1,25 @@
+---
+    - name: Update apt cache
+      raw: apt-get update
+      sudo: true
+
+    - name: Install postgres
+      apt: name='{{ item }}'
+      with_items:
+        - postgresql
+        - python-psycopg2
+      sudo: true
+
+    - name: Create user
+      postgresql_user: user='{{ app.id }}' password='{{ app.id }}' role_attr_flags=CREATEDB,NOSUPERUSER
+      sudo: true
+      sudo_user: postgres
+
+    - name: Create database
+      postgresql_db: name='{{ app.id }}' owner='{{ app.id }}'
+      sudo: true
+      sudo_user: postgres
+
+    - name: Reload service
+      service: name=postgresql state=reloaded
+      sudo: true

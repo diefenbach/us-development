@@ -1,0 +1,11 @@
+---
+- name: Add repository
+  apt_repository: repo='ppa:chris-lea/uwsgi' update_cache=yes validate_certs=no
+  sudo: true
+
+- name: Install uwsgi
+  apt: name={{ item }} state=latest
+  sudo: true
+  with_items:
+    - uwsgi
+    - uwsgi-plugin-python
