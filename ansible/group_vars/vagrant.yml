@@ -1,6 +1,7 @@
 ---
 app:
     id: us
+    environment: development
 
 nginx:
     server_name: localhost

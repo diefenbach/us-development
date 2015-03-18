@@ -5,6 +5,7 @@
 
 - name: Clone project
   git: repo={{ sources.project.repo }} dest="/home/vagrant/{{ sources.project.name }}" version="{{ sources.project.version }}" accept_hostkey=yes
+  when: app.environment != "development"
 
 - name: Clone app
   git: repo={{ sources.us.repo }} dest="/home/vagrant/{{ sources.project.name }}/{{ sources.us.name }}" version="{{ sources.us.version }}" accept_hostkey=yes
